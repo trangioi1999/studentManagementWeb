@@ -1,0 +1,31 @@
+<h1>Student Management </h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add student</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">StudentID</th>
+            <th style="width: 30%">Student Name</th>
+            <th style="width: 30%">Student Class</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let student of studentList">
+        <tr *ngIf="student.studentAccountActive">
+            <td>{{student.studentID}} </td>
+            <td>{{student.studentName}}</td> 
+            <td>{{student.studentClass}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{student.studentID}}" 
+                (click)="onShowOrderDetail(student)" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteStudent(student.studentID)" class="btn btn-sm btn-danger btn-delete-student" >
+                   Delete
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!studentList">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
